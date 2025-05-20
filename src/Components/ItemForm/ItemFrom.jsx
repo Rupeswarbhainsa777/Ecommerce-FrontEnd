@@ -19,6 +19,7 @@ const ItemFrom = () => {
                               />
                           </div>
                           <div className="mb-2">
+
                               <label htmlFor="name" className="form-label">Item Name</label>
                               <input type="text"
                                      name="name"
@@ -37,9 +38,12 @@ const ItemFrom = () => {
                                   </select>
 
                               </div>
-                              <div className="mb-3">
-                                  <label ></label>
 
+
+
+                              <div className="mb-3">
+                                  <label htmlFor="price" className="form-label">Price</label>
+                                   <input   type="number"  name="price" id="price" className="form-control"  placeholder="&#8377;200"/>
                               </div>
 
 
@@ -54,17 +58,7 @@ const ItemFrom = () => {
                                   ></textarea>
                               </div>
 
-                              <div className="mb-3">
-                                  <label htmlFor="bgcolor" className="form-label">Background color</label>
-                                  <br/>
-                                  <input
-                                      type="color"
-                                      name="bgcolor"
-                                      id="bgcolor"
-                                      placeholder="#fffff"
 
-                                  />
-                              </div>
 
                               <button className="btn btn-primary  w-100"  type="submit"  >save</button>
 
