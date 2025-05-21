@@ -1,27 +1,33 @@
-import {createContext, useEffect, useState} from "react";
-import axios from "axios";
+import {createContext, useEffect,useState} from "react";
 import {fetchCategory} from "../service/CategoryService.js";
 
-export const AppContext= createContext(null);
+export {createContext} from "react";
 
-export const AppContextProvider= (props)=>{
- const [categories,setCategories] = useState([]);
+export const AppContext =createContext(null);
 
-    useEffect(() => {
-        async  function loadData() {
-           const response = await fetchCategory();
-           setCategories(response.data);
+export const AppContextProvider = (props) => {
+
+    const [categories, setCategories] = useState([]);
+    useEffect(()=>{
+
+      async  function loadData(){
+                 const response = await fetchCategory();
+                 setCategories(response.data);
         }
-   loadData();
+        loadData();
+    }, );
 
 
- },[]);
+
+    const contextValue ={
+         categories,
+        setCategories
+    }
 
 
-     const  contextValue = {
-       categories,setCategories
-     }
-         return <AppContext.Provider value={contextValue}>
-             {props.children}
-         </AppContext.Provider>
+    return <AppContext.Provider value={contextValue}>
+        {props.children}
+
+
+    </AppContext.Provider>;
 }

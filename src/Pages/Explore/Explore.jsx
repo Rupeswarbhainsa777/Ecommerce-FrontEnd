@@ -1,9 +1,10 @@
 import './Explore.css';
 import {useContext} from "react";
+import {AppContext} from "../../context/AppContext.jsx";
 
 const Explore = () => {
     const {categories} = useContext(AppContext);
-    console.log()
+    console.log(categories);
     return (
         <div className="explore-container text-light">
             <div className="left-column">
@@ -17,11 +18,11 @@ const Explore = () => {
             </div>
 
             <div className="right-column d-flex flex-column">
-                <div className="customer-form-container" style={{ height: '20%' }}>
+                <div className="customer-form-container" style={{ height: '15%' }}>
                     customer form
                 </div>
 
-                <div className="cart-items" style={{ height: '50%', overflowY: 'auto' }}>
+                <div className="cart-items" style={{ height: '55%', overflowY: 'auto' }}>
                     cart items
                 </div>
 
@@ -31,8 +32,5 @@ const Explore = () => {
             </div>
         </div>
     );
-};
-
-export default Explore;
-
-
+}
+export  default Explore;

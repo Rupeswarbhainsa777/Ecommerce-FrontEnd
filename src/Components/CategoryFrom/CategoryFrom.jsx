@@ -1,13 +1,40 @@
+import {useEffect, useState} from "react";
+// import {assests} from "../../assets/ass.js";
+
+import {assest} from "../../assets/assest.js";
+
 const CategoryFrom =()=>{
+
+    // const [loading, setLoading] = useState(false);
+    const [images, setImages] = useState(false);
+    const [data, setData] = useState(
+        {
+            name : "",
+            description: "",
+            bgColor : "#ffffff",
+        });
+          useEffect(()=>{
+              console.log(data);
+
+          },[data])
+    const  onChangeHandler = (e)=>{
+        const value = e.target.value;
+        const name = e.target.name;
+
+        setData((data) =>({...data,[name]:value }));
+    }
+
+
+
     return(
         <div className="mx-2 mt-2">
             <div className="row">
-                <div className="card col-md-8 form-container">
+                <div className="card col-md-12 form-container">
                     <div className="card-body">
 
                         <div className="mb-3">
                             <label className="form-label" htmlFor="image">
-                                <img src="https://placehold.co/48x48" alt="Upload preview" width={48}/>
+                                <img src={image ? URL.createObjectURL(image): assest.upload} alt="" width={48}/>
                             </label>
                             <input
                                 type="file"
@@ -15,6 +42,8 @@ const CategoryFrom =()=>{
                                 id="image"
                                 className="form-control"
                                hidden
+                                onChange={(e)=>
+                                    setImages(e.target.files[0])}
                             />
                         </div>
                         <div className="mb-2">
@@ -24,6 +53,8 @@ const CategoryFrom =()=>{
                                    id="name"
                                    className="form-control"
                                    placeholder="Category Name"
+                                   onChange={onChangeHandler}
+                                   value={data.name}
                             >
                             </input>
 
@@ -36,6 +67,8 @@ const CategoryFrom =()=>{
                                     id="description"
                                     className="form-control"
                                     placeholder="Write content here"
+                                    onChange={onChangeHandler}
+                                    value={data.description}
                                 ></textarea>
                             </div>
 
@@ -47,6 +80,8 @@ const CategoryFrom =()=>{
                                        name="bgcolor"
                                        id="bgcolor"
                                        placeholder="#fffff"
+                                       onChange={onChangeHandler}
+                                       value={data.bgcolor}
 
                                    />
                             </div>
