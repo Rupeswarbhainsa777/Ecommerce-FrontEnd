@@ -28,12 +28,14 @@ const Login = () => {
             const response = await login(data);
 
             if (response.status === 200) {
-                const { token, role } = response.data;
+                // const { token, role } = response.data;
 
                 toast.success("Login Successful!");
-                localStorage.setItem("token", token);
-                localStorage.setItem("role", role);
-                setAuthData(token, role);
+                localStorage.setItem("token", response.data.token);
+                localStorage.setItem("role", response.data.role);
+                setAuthData(response.data,response.data.role);
+
+
                 navigate("/dashboard");
             }
         } catch (error) {

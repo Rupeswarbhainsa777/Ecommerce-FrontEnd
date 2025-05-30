@@ -4,7 +4,8 @@
 
 import { useContext, useEffect, useState } from "react";
 import { assets } from "../../assets/assets.js";
-import { addCategory } from "../../service/CategoryService.js";
+import {addCategory } from "../../service/CategoryService.js"
+// import { addCategory } from "../../service/CategoryService.js";
 import toast from "react-hot-toast";
 import { AppContext } from "../../context/AppContext.jsx";
 

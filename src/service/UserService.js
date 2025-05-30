@@ -1,0 +1,13 @@
+import axios  from "axios";
+
+export const addUser =async (user) => {
+   return   await  axios.post(`http://localhost:9091/api/v1.0/admin/register`,user, {headers:{'Authorization':`Bearer${localStorage.getItem('token')}`}});
+}
+
+export const deleteUser = async (id) => {
+   return await axios.delete(`http://localhost:9091/api/v1.0/admin/users/${id}`,{headers:{'Authorization':`Bearer${localStorage.getItem('token')}`}});
+}
+
+export const fetchUser = async (user) => {
+ return    await  axios.get(`http://localhost:9091/api/v1.0/admin/user/`, {headers:{'Authorization':`Bearer${localStorage.getItem('token')}`}});
+}
