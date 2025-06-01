@@ -1,14 +1,85 @@
+import {useContext, useState} from "react";
+import {assets} from "../../assets/assets.js";
+import {AppContext} from "../../context/AppContext.jsx";
+import toast from "react-hot-toast";
+import {addItem} from "../../service/ItemSevices.js";
+
 const ItemFrom = () => {
+     const {category,setItemsData,itemData} = useContext(AppContext);
+    const [image,setImage]=useState(false);
+    const [loding,setLoading]=useState(false);
+    const [data,setData]=useState({
+        name: "",
+        categoryId: "",
+        price: "",
+        description: "",
+    });
+
+
+    const onChangeHandler = (e) => {
+       const  {name} = e.target;
+       const {value} = e.target;
+       setData((data) => ({...data,[name]: value}));
+
+    }
+    const onSubmitHandler =async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        const formData = new FormData();
+        formData.append('item', JSON.stringify(data));
+        formData.append('file', image);
+        try {
+            if (!image)
+            {
+                toast.error("Select image");
+                return;
+            }
+           const response        = await addItem(formData);
+
+            if(response.status === 201)
+            {
+                setItemsData([...itemData, response.data]);
+                setLoading(false);
+                //todo : update the category
+                toast.success("Item Added Successfully");
+                setData(
+                    {
+                        name: "",
+                        description: "",
+                        price: "",
+                        categoryId: "",
+
+                    }
+                )
+               setImage(false);
+            }
+            else
+            {
+                toast.error("Item Added Failed");
+            }
+
+        }
+        catch (error)
+        {
+            console.error(error);
+            toast.error("Unable to add item");
+
+        }
+        finally {
+            setLoading(false);
+        }
+    }
+
     return (
-      <div className="item-form-container "style={{height: '100vh',overflowY:'auto',overflowx: 'hidden'}}>
+      <div className="item-form-container " style={{height: '100vh',overflowY:'auto', overflowx: 'hidden'}}>
           <div className="mx-2 mt-2">
               <div className="row">
                   <div className="card col-md-8 form-container">
                       <div className="card-body">
-
+                           <form onSubmit={onSubmitHandler}>
                           <div className="mb-3">
                               <label className="form-label" htmlFor="image">
-                                  <img src="https://placehold.co/48x48" alt="Upload preview" width={48}/>
+                                  <img src={image ? URL.createObjectURL(image):assets.upload} alt="Upload preview" width={48}/>
                               </label>
                               <input
                                   type="file"
@@ -16,6 +87,7 @@ const ItemFrom = () => {
                                   id="image"
                                   className="form-control"
                                   hidden
+                                  onChange={(e)=> setImage(e.target.files[0])}
                               />
                           </div>
                           <div className="mb-2">
@@ -26,15 +98,24 @@ const ItemFrom = () => {
                                      id="name"
                                      className="form-control"
                                      placeholder="Item Name"
+                                     onChange={onChangeHandler}
+                                     value={data.name}
                               >
                               </input>
                               <div className="mb-3">
-                                  <label htmlFor="category" className="form-label">Category</label>
-                                  <select className="form-control" name="category" id="category">
+                                  <label htmlFor="category" className="form-label" >
+                                      Category
+                                  </label>
+                                  <select className="form-control" name="categoryId" id="category"  onChange={onChangeHandler}   value={data.categoryId}>
                                       <option value="">Select Category</option>
-                                      <option value="category 1">Select Rb</option>
-                                      <option value="category 2">Select Mb</option>
-                                      <option value="category 3">Select cb</option>
+                                      {Array.isArray(category) &&
+                                          category.map((category, index) => (
+                                              <option key={category.categoryId || index} value={category.categoryId}>
+                                                  {category.name}
+                                              </option>
+                                          ))}
+
+
                                   </select>
 
                               </div>
@@ -43,7 +124,7 @@ const ItemFrom = () => {
 
                               <div className="mb-3">
                                   <label htmlFor="price" className="form-label">Price</label>
-                                   <input   type="number"  name="price" id="price" className="form-control"  placeholder="&#8377;200"/>
+                                   <input   type="number"  name="price" id="price" className="form-control"  placeholder="&#8377;200"  onChange={onChangeHandler}  value={data.price} />
                               </div>
 
 
@@ -55,15 +136,17 @@ const ItemFrom = () => {
                                       id="description"
                                       className="form-control"
                                       placeholder="Write content here"
+                                      onChange={onChangeHandler}
+                                      value={data.description}
                                   ></textarea>
                               </div>
 
 
 
-                              <button className="btn btn-primary  w-100"  type="submit"  >save</button>
+                              <button className="btn btn-primary  w-100"  type="submit" disabled={loding} >{loding ?"loading..." : "save"}</button>
 
                           </div>
-
+                           </form>
 
                       </div>
 

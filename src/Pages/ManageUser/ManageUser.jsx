@@ -9,13 +9,14 @@ const ManageUser=()=>{
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(false);
     useEffect(() => {
-           async function loadUsers() {
+           async function fetchUsers() {
                try {
                    setLoading(true);
-                 const response=await fetchUser()
+                 const response=await fetchUser();
                  setUsers(response.data);
                }
                catch (err) {
+
                    console.log(err)
                    toast.error("Unable to fetch users");
                }
@@ -23,25 +24,8 @@ const ManageUser=()=>{
                    setLoading(false);
                }
            }
-
-          loadUsers()
+           fetchUsers()
     }, []);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
