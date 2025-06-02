@@ -1,12 +1,27 @@
 import axios    from "axios";
+// export const addItem = async (item) => {
+//    return  await axios.post(`http://localhost:9091/api/v1.0/admin/items`, item,{headers:{'Authorization':`Bearer ${localStorage.getItem('token')}`}});
+// }
+
+
 export const addItem = async (item) => {
-   return  await axios.post(`http://localhost:9091/api/v1.0/admin/items`, item,{headers:{'Authorization':`Bearer ${localStorage.getItem('token')}`}});
-}
+    return await axios.post(
+        `http://localhost:9091/api/v1.0/admin/items`,
+        item,
+        {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                // Do NOT set Content-Type here
+            }
+        }
+    );
+};
+
 
 export const deleteItem = async (item) => {
     return  await axios.delete(`http://localhost:9091/api/v1.0/admin/items/${itemId}`,{headers:{'Authorization':`Bearer ${localStorage.getItem('token')}`}});
 }
 
 export const fetchItems =async (item) => {
-    return await axios.get(`http://localhost:9091/api/v1.0/admin/items`, {headers:{'Authorization':`Bearer ${localStorage.getItem('token')}`}});
+    return await axios.get(`http://localhost:9091/api/v1.0/categories`, {headers:{'Authorization':`Bearer ${localStorage.getItem('token')}`}});
 }

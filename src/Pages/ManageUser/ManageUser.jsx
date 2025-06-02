@@ -29,10 +29,6 @@ const ManageUser=()=>{
 
 
 
-
-
-
-
     return (
         <div>
             <div className="category-container text-light">

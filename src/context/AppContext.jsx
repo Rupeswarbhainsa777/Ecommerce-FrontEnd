@@ -9,15 +9,15 @@ export const AppContext =createContext(null);
 export const AppContextProvider = (props) => {
 
     const [categories, setCategories] = useState([]);
-    const [itemData,setItemsData] = useState([]);
+    const [itemsData,setItemsData] = useState([]);
     const [auth, setAuth] = useState({token:null,role:null});
     useEffect(()=>{
 
       async  function loadData(){
                  const response = await fetchCategory();
-                 const itemresponse = await fetchItems();
+                 const itemResponse = await fetchItems();
                  setCategories(response.data);
-                 setItemsData(itemresponse.data);
+                 setItemsData(itemResponse.data);
 
         }
         loadData();
@@ -32,8 +32,8 @@ const setAuthData =(token,role) =>{
         setCategories,
          auth,
         setAuthData,
-        itemData,
-        setItemsData
+        itemsData,
+        setItemsData,
 
     }
 
