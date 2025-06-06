@@ -1,7 +1,19 @@
 import './Item.css'
 import Button from "bootstrap/js/src/button.js";
+import {useContext} from "react";
+import {AppContext} from "../../context/AppContext.jsx";
 
 const Item = ({itemName, itemPrice, itemImage,itemId}) => {
+
+    const {addToCart} = useContext(AppContext);
+    const handleAddToCart =()=>{
+        addToCart({
+            name: itemName,
+            price: itemPrice,
+            quantity: 1,
+            itemId: itemId,
+        });
+    }
     return (
         <div className="p-3 bg-dark rounded shadow-sm h-100 d-flex  align-items-center item-card            ">
 
@@ -16,7 +28,7 @@ const Item = ({itemName, itemPrice, itemImage,itemId}) => {
 
             <div className="d-flex flex-column align-items-center justify-content-between ms-3"  style={{height:"100%"}}>
                 <i className="bi bi-cart-plus text-warning"></i>
-                <button className="btn btn-success btn-sm" >
+                <button className="btn btn-success btn-sm"   onClick={handleAddToCart}>
                     <i className="bi bi-plus"></i>
 
                 </button>

@@ -10,6 +10,8 @@ import CartSummary from "../../Components/CartSummary/CartSummary.jsx";
 const Explore = () => {
     const {categories} = useContext(AppContext);
     const [selectedCategory, setSelectedCategory] = useState("");
+    const [customerName, setCustomerName] = useState("");
+    const [mobileNumber, setMobileNumber] = useState("");
     return (
         <div className="explore-container text-light">
             <div className="left-column">
@@ -28,8 +30,14 @@ const Explore = () => {
             </div>
 
             <div className="right-column d-flex flex-column">
-                <div className="customer-form-container" style={{ height: '15%' }}>
-                    <CustomerForm/>
+                <div className="customer-form-container" style={{ height: '20%' }}>
+                    <CustomerForm
+                    customerName={customerName}
+                    mobileNumber={mobileNumber}
+                    setMobileNumber={setMobileNumber}
+                    setCustemerName={setCustomerName}
+
+                    />
                 </div>
 
                 <div className="cart-items" style={{ height: '55%', overflowY: 'auto' }}>
