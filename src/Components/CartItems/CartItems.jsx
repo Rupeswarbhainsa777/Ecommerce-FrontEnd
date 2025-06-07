@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { AppContext } from "../../context/AppContext.jsx";
 
 const CartItems = () => {
-    const { cartItems } = useContext(AppContext);
+    const { cartItems, removeFromCart, updateQuantity } = useContext(AppContext);
 
     return (
         <div className="p-3 h-100 overflow-y-auto">
@@ -29,13 +29,17 @@ const CartItems = () => {
                                     <button
                                         className="btn btn-danger btn-sm"
                                         disabled={item.quantity === 1}
+                                        onClick={() => updateQuantity(item.itemId, item.quantity - 1)}
                                     >
                                         <i className="bi bi-dash"></i>
                                     </button>
 
                                     <span className="text-light">{item.quantity}</span>
 
-                                    <button className="btn btn-primary btn-sm">
+                                    <button
+                                        className="btn btn-primary btn-sm"
+                                        onClick={() => updateQuantity(item.itemId, item.quantity + 1)}
+                                    >
                                         <i className="bi bi-plus"></i>
                                     </button>
                                 </div>
@@ -43,8 +47,9 @@ const CartItems = () => {
                                 <button
                                     className="btn btn-danger btn-sm"
                                     style={{ width: "auto" }}
+                                    onClick={() => removeFromCart(item.itemId)}
                                 >
-                                   <i className="bi bi-trash"></i>
+                                    <i className="bi bi-trash"></i>
                                 </button>
                             </div>
                         </div>

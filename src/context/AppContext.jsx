@@ -1,6 +1,7 @@
 import {createContext, useEffect,useState} from "react";
 import {fetchCategory} from "../service/CategoryService.js";
 import {fetchItems } from "../service/ItemSevices.js";
+import item from "../Components/Item/Item.jsx";
 
 
 export {createContext} from "react";
@@ -24,7 +25,14 @@ export const AppContextProvider = (props) => {
                       }
     }
 
+      const removeFromCart = (itemId) => {
+                 setCartItems(cartItems.filter(Item => item.itemId !== itemId));
+      }
+      const updateQuantity = (itemId,newQuantity) => {
 
+        setCartItems(cartItems.map(item => item.itemId === itemId ?{...item,quantity: newQuantity} : item     ));
+
+      }
 
 
     const [auth, setAuth] = useState({token:null,role:null});
@@ -63,6 +71,9 @@ export const AppContextProvider = (props) => {
         setItemsData,
         addToCart,
         cartItems,
+        removeFromCart,
+        updateQuantity,
+
 
     }
 
