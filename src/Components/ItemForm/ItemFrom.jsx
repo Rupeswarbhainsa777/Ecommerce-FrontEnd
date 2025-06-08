@@ -101,6 +101,7 @@ const ItemFrom = () => {
                                         placeholder="Item Name"
                                         value={data.name}
                                         onChange={onChangeHandler}
+                                        required
                                     />
                                 </div>
 
@@ -113,11 +114,12 @@ const ItemFrom = () => {
                                         id="categories"
                                         value={data.categoryId}
                                         onChange={onChangeHandler}
+                                        required
                                     >
                                         <option value="">Select Category</option>
                                         {Array.isArray(categories) &&
                                             categories.map((cat, index) => (
-                                                <option key={cat.categoryId || index} value={cat.categoryId}>
+                                                <option key={cat.categoryId || index} value={cat.categoryId} >
                                                     {cat.name}
                                                 </option>
                                             ))}
@@ -135,6 +137,7 @@ const ItemFrom = () => {
                                         placeholder="₹200"
                                         value={data.price}
                                         onChange={onChangeHandler}
+                                        required
                                     />
                                 </div>
 

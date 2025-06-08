@@ -66,7 +66,9 @@ const CategoryList = () => {
                             <div className="d-flex align-items-center">
                                 <div style={{marginRight: '15px'}}>
 
-                                    <img  src={category.imgUrl} alt={category.name}  className="category-image" />
+
+                                    <img src={category.imgUrl} alt={category.name} className="category-image" />
+
 
                                 </div>
 

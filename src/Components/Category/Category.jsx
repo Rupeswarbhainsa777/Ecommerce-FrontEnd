@@ -22,4 +22,4 @@ const  Category = ({categoryName,imgUrl,numberOfItems,bgColor,isSelected,onClick
         </div>
     )
 }
-export default Category
+export default Category;

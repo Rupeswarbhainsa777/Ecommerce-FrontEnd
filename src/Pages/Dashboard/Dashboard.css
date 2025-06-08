@@ -1,0 +1,110 @@
+/* General Dashboard Wrapper */
+.dashboard-wrapper {
+    padding: 2rem;
+    background-color: #121212;
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+.dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background-color: #1e1e1e;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.stat-icon {
+    background-color: #2a2a2a;
+    padding: 1rem;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    color: #4ade80; /* Green color */
+}
+
+.stat-content h3 {
+    font-size: 1rem;
+    color: #aaaaaa;
+    margin: 0;
+}
+
+.stat-content p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+    color: #ffffff;
+}
+
+/* Recent Orders */
+.recent-orders-card {
+    background-color: #1e1e1e;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.recent-orders-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.orders-table-container {
+    overflow-x: auto;
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #ffffff;
+}
+
+.orders-table th,
+.orders-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #333;
+}
+
+.orders-table th {
+    color: #cccccc;
+    font-weight: 600;
+}
+
+.payment-method.cash {
+    color: #fbbf24; /* Amber */
+}
+
+.payment-method.upi {
+    color: #3b82f6; /* Blue */
+}
+
+.status-badge.completed {
+    color: #4ade80; /* Green */
+    font-weight: bold;
+}
+
+.loading, .error {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    color: #f87171; /* Red */
+}
