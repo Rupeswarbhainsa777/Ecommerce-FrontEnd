@@ -8,7 +8,7 @@ const DisplayCategory = ({ categories, setSelectedCategory, selectedCategory }) 
             <div className="col-md-3 col-sm-6" key="all">
                 <Category
                     categoryName="All Items"
-                    // imgUrl={assets.profile}
+                    imgUrl={assets.allItems}
                     numberOfItems={categories.reduce((acc, cat) => acc + cat.items, 0)}
                     bgColor="#6757d6"
                     isSelected={selectedCategory === ""}

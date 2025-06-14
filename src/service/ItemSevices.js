@@ -23,5 +23,5 @@ export const deleteItem = async (item) => {
 }
 
 export const fetchItems =async (item) => {
-    return await axios.get(`http://localhost:9091/api/v1.0/categories`, {headers:{'Authorization':`Bearer ${localStorage.getItem('token')}`}});
+    return await axios.get(`http://localhost:9091/api/v1.0/items`, {headers:{'Authorization':`Bearer ${localStorage.getItem('token')}`}});
 }

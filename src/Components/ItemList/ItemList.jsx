@@ -1,10 +1,12 @@
 import {useContext, useState} from "react";
 import {AppContext} from "../../context/AppContext.jsx";
-import {deleteItem} from "../../service/ItemSevices.js";
+import {deleteItem, fetchItems} from "../../service/ItemSevices.js";
 import toast from "react-hot-toast";
 
 
 const ItemList = () => {
+    const x=fetchItems();
+    console.log("items",x);
     const {itemsData,setItemsData} = useContext(AppContext);
     const [searchTerm, setSearchTerm] = useState('');
     const filteredItems = itemsData.filter((item) => {
