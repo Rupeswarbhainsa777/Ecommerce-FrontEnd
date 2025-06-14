@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchDashBoard } from "../../service/DashBoard.js";
 import toast from "react-hot-toast";
-import './Dashboard.css'
+import './Dashboard.css';
 
 const Dashboard = () => {
     const [data, setData] = useState(null);
@@ -11,7 +11,12 @@ const Dashboard = () => {
         const loadData = async () => {
             try {
                 const response = await fetchDashBoard();
-                setData(response);
+                console.log("Dashboard response:", response);
+                setData(response.data || {
+                    todaySales: 0,
+                    todayOrderCount: 0,
+                    recentOrder: []
+                });
             } catch (error) {
                 console.error(error);
                 toast.error("Unable to view the data");
@@ -23,21 +28,8 @@ const Dashboard = () => {
     }, []);
 
     if (loading) {
-        return <div className="loading">Loading dashboard...</div>; // ✅ Fixed typo in "loding"
+        return <div className="loading">Loading dashboard...</div>;
     }
-
-    if (!data) {
-        return <div className="error">Failed to load the dashboard data...</div>;
-    }
-
-
-
-
-
-
-
-
-
 
     return (
         <div className="dashboard-wrapper">
@@ -49,14 +41,7 @@ const Dashboard = () => {
                         </div>
                         <div className="stat-content">
                             <h3>Today's Sales</h3>
-                            {/*<p>₹{data.todaySales.toFixed(2)}</p>*/}
-                            <p>
-                                ₹{typeof data?.todaySales === 'number'
-                                ? data.todaySales.toFixed(2)
-                                : 'Loading...'}
-                            </p>
-
-
+                            <p>₹{data.todaySales?.toFixed(2)}</p>
                         </div>
                     </div>
 
@@ -84,38 +69,36 @@ const Dashboard = () => {
                                 <th>Order Id</th>
                                 <th>Customer</th>
                                 <th>Amount</th>
-                                <th>Payment</th>
-                                <th>Status</th>
+                                <th>Phone</th>
                                 <th>Time</th>
                             </tr>
                             </thead>
                             <tbody>
-                            {data?.recentOrders?.map((order) => (
-                                <tr key={order?.orderId || Math.random()}>
-                                    <td>{order?.orderId ? `${order.orderId.substring(0, 8)}...` : 'N/A'}</td>
-                                    <td>{order?.customerName || 'N/A'}</td>
-                                    <td>₹{typeof order?.grandTotal === 'number' ? order.grandTotal.toFixed(2) : '0.00'}</td>
-                                    <td>
-            <span className={`payment-method ${order?.paymentMethod?.toLowerCase() || ''}`}>
-                {order?.paymentMethod || 'N/A'}
-            </span>
-                                    </td>
-                                    <td>
-            <span className={`status-badge ${order?.paymentDetails?.status?.toLowerCase() || ''}`}>
-                {order?.paymentDetails?.status || 'N/A'}
-            </span>
-                                    </td>
-                                    <td>
-                                        {order?.createdAt
-                                            ? new Date(order.createdAt).toLocaleString([], {
-                                                hour: '2-digit',
-                                                minute: '2-digit',
-                                            })
-                                            : 'N/A'}
-                                    </td>
+                            {data.recentOrder?.length > 0 ? (
+                                data.recentOrder.map((order) => (
+                                    <tr key={order.orderId}>
+                                        <td>{order.orderId?.substring(0, 8)}...</td>
+                                        <td>{order.customerName}</td>
+                                        <td>₹{order.subtotal?.toFixed(2)}</td>
+                                        <td>{order.phoneNumber || "N/A"}</td>
+                                        <td>
+                                            {order.createAt
+                                                ? new Date(order.createAt).toLocaleString([], {
+                                                    hour: "2-digit",
+                                                    minute: "2-digit",
+                                                    day: "2-digit",
+                                                    month: "short",
+                                                    year: "numeric"
+                                                })
+                                                : "N/A"}
+                                        </td>
+                                    </tr>
+                                ))
+                            ) : (
+                                <tr>
+                                    <td colSpan="5">No recent orders found.</td>
                                 </tr>
-                            ))}
-
+                            )}
                             </tbody>
                         </table>
                     </div>
@@ -126,4 +109,28 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

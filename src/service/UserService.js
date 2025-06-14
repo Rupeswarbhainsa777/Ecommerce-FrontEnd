@@ -11,4 +11,3 @@ export const deleteUser = async (id) => {
 export const fetchUser = async (user) => {
  return    await  axios.get(`http://localhost:9091/api/v1.0/admin/users`, {headers: {'Authorization':`Bearer ${localStorage.getItem('token')}`}});
 }
-

@@ -1,41 +1,37 @@
 import {useContext, useMemo, useState} from "react";
 import './CategoryList.css';
 import {AppContext} from "../../context/AppContext.jsx";
-import {deleteCategory} from "../../service/CategoryService.js";
+import {deleteCategory, fetchCategory} from "../../service/CategoryService.js";
 import toast from "react-hot-toast";
 
 
 const CategoryList = () => {
     const {categories,setCategories} = useContext(AppContext);
+    const x=fetchCategory();
+    console.log(x+"Rupa");
+    console.log(categories);
     const [serchTerm, setSerchTerm] = useState('');
     const filteredCategories = categories.filter(
         category => category.name.toLowerCase().includes(serchTerm.toLowerCase())
     );
 
-    const  deleteByCategoryId =async (categoryId) => {
+    const deleteByCategoryId = async (categoryId) => {
         try {
             const response = await deleteCategory(categoryId);
 
             if (response.status === 204) {
-                const updatesCategory = categories.filter(category => category.categoryId !== categoryId);
-                setCategories(updatesCategory);
-                // display toast message
+                const updatedCategories = categories.filter(category => category.categoryId !== categoryId);
+                setCategories(updatedCategories);
                 toast.success("Category deleted!");
-
-
             } else {
-
-
-                toast.error("Unable to deleted  Category");
-
+                toast.error("Failed to delete category.");
             }
         } catch (error) {
-            console.log(error);
-            toast.error("Unable to deleted  Category");
-            //display toast  err  message
+            console.error("Delete failed:", error);
+            toast.error("An error occurred while deleting the category.");
         }
+    };
 
-    }
 
     return (
         <div className="category-list-container" style={{ height: '100vh', overflowY: 'auto', overflowX: 'hidden' }}

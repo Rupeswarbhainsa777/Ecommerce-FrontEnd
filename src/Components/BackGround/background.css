@@ -1,0 +1,11 @@
+.white-bg {
+    background-color: white;
+    height: 100vh;
+    padding: 20px;
+}
+
+.blue-bg {
+    background-color: lightblue;
+    height: 100vh;
+    padding: 20px;
+}
