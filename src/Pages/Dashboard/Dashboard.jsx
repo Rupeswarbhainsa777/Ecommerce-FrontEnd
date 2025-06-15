@@ -4,7 +4,12 @@ import toast from "react-hot-toast";
 import './Dashboard.css';
 
 const Dashboard = () => {
-    const [data, setData] = useState(null);
+    const [data, setData] = useState({
+        todaySales: 0,
+        todayOrderCount: 0,
+        recentOrder: []
+    });
+
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {

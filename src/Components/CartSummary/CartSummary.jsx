@@ -10,7 +10,7 @@ const  CartSummary = ({customerName,mobileNumber,setMobileNumber,setCustemerName
     const {cartItems} = useContext(AppContext);
     const totalAmount = cartItems.reduce((total,item) => total+item.price*item.quantity,0);
     const tax = totalAmount*0.01;
-    const grandTotal = totalAmount*tax;
+    const grandTotal = totalAmount+tax;
 
 
 

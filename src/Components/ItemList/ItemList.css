@@ -1,5 +1,6 @@
 .item-image {
-    border-radius: 8px;
+    width: 60px;
+    height: 60px;
     object-fit: cover;
-    height: 48px;
+    border-radius: 8px;
 }

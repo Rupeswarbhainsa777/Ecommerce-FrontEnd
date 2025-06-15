@@ -33,7 +33,7 @@ const DisplayItems = ({selectedCategory}) => {
                            <Item
                             itemName={item.name}
                             itemPrice={item.price}
-                            itemImage={item.imaUrl}
+                            itemImage={item.imgUrl}
                             itemId={item.itemId}
 
                            />

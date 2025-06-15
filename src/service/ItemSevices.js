@@ -18,9 +18,17 @@ export const addItem = async (item) => {
 };
 
 
-export const deleteItem = async (item) => {
-    return  await axios.delete(`http://localhost:9091/api/v1.0/admin/items/${itemId}`,{headers:{'Authorization':`Bearer ${localStorage.getItem('token')}`}});
-}
+export const deleteItem = async (itemId) => {
+    return await axios.delete(
+        `http://localhost:9091/api/v1.0/admin/items/${itemId}`,
+        {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        }
+    );
+};
+
 
 export const fetchItems =async (item) => {
     return await axios.get(`http://localhost:9091/api/v1.0/items`, {headers:{'Authorization':`Bearer ${localStorage.getItem('token')}`}});

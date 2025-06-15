@@ -6,8 +6,10 @@ import DisplayItems from "../../Components/DisplayItems/DisplayItems.jsx";
 import CustomerForm from "../../Components/CustomerForm/CustomerForm.jsx";
 import CartItems from "../../Components/CartItems/CartItems.jsx";
 import CartSummary from "../../Components/CartSummary/CartSummary.jsx";
+import {fetchItems} from "../../service/ItemSevices.js";
 
 const Explore = () => {
+
     const {categories} = useContext(AppContext);
     const [selectedCategory, setSelectedCategory] = useState("");
     const [customerName, setCustomerName] = useState("");
