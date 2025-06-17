@@ -2,6 +2,7 @@ import './DisplayCategory.css';
 import Category from "../Category/Category.jsx";
 import { assets } from "../../assets/assets.js";
 
+
 const DisplayCategory = ({ categories, setSelectedCategory, selectedCategory }) => {
     return (
         <div className="row g-3 display-category">
@@ -9,7 +10,7 @@ const DisplayCategory = ({ categories, setSelectedCategory, selectedCategory }) 
                 <Category
                     categoryName="All Items"
                     imgUrl={assets.allItems}
-                    numberOfItems={categories.reduce((acc, cat) => acc + cat.items, 0)}
+                    // numberOfItems={category.reduce((acc, cat) => acc + cat.items, 0)}
                     bgColor="#6757d6"
                     isSelected={selectedCategory === ""}
                     onClick={() => setSelectedCategory("")}

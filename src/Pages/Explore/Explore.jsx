@@ -7,8 +7,10 @@ import CustomerForm from "../../Components/CustomerForm/CustomerForm.jsx";
 import CartItems from "../../Components/CartItems/CartItems.jsx";
 import CartSummary from "../../Components/CartSummary/CartSummary.jsx";
 import {fetchItems} from "../../service/ItemSevices.js";
+import {createOrder} from "../../service/OrderServices.js";
 
 const Explore = () => {
+
 
     const {categories} = useContext(AppContext);
     const [selectedCategory, setSelectedCategory] = useState("");
@@ -20,7 +22,7 @@ const Explore = () => {
                 <div className="first-row" style={{ overflowY: 'auto' }}>
                     <DisplayCategory
                         selectedCategory={selectedCategory}
-                        setSelectedCategory={ setSelectedCategory}
+                        setSelectedCategory={setSelectedCategory}
                         categories={categories}
 
                     />

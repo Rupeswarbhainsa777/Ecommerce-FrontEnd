@@ -14,7 +14,7 @@ const  Category = ({categoryName,imgUrl,numberOfItems,bgColor,isSelected,onClick
            </div>
                   <div>
                       <h6  className="text-white mb-0">{categoryName}</h6>
-                        <p  className="text-white mb-0"> {numberOfItems} Items</p>
+                        {/*<p  className="text-white mb-0">{numberOfItems}Items</p>*/}
                   </div>
             {isSelected && <div className="active-category">
 

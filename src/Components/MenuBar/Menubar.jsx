@@ -67,6 +67,9 @@ const Menubar = () => {
                                 <li className="nav-item">
                                     <Link className={`nav-link ${isActive('/users') ? 'fw-bold text-primary' : ''}`} to="/users">Manage User</Link>
                                 </li>
+                                <li className="nav-item">
+                                    <Link className={`nav-link ${isActive('/orders') ? 'fw-bold text-primary' : ''}`} to="/orders">Order History</Link>
+                                </li>
                             </>
                         )
                     }

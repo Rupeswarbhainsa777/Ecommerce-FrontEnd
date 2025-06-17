@@ -10,6 +10,7 @@ import {Toaster} from "react-hot-toast";
 import {useContext} from "react";
 import {AppContext} from "./context/AppContext.jsx";
 import NotFound from "./Pages/NotFound/NotFound.jsx";
+import OrderHistory from "./Components/OdersHistory/OrderHistory.jsx";
 
 const App = () => {
 
@@ -48,6 +49,7 @@ const App = () => {
 
                 <Route path="/login" element={<LoginRouth element={<Login/> } />} />
                 <Route path="/" element={<Dashboard />} />
+                <Route path="/orders" element={<OrderHistory />} />
                 <Route path="*"   element={<NotFound/>} />
             </Routes>
         </div>
